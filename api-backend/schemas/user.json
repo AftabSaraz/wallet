@@ -1,0 +1,170 @@
+{
+  "user_schema": {
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The User Schema",
+  "required": [
+    "lastName",
+    "firstName",
+    "address",
+    "email",
+    "phoneNumber",
+    "mobileNumber",
+    "language",
+    "walletOrganizations"
+  ],
+  "properties": {
+    "lastName": {
+      "$id": "#/properties/lastName",
+      "type": "string",
+      "title": "The Lastname Schema",
+      "default": "",
+      "examples": [
+        "John"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "firstName": {
+      "$id": "#/properties/firstName",
+      "type": "string",
+      "title": "The Firstname Schema",
+      "default": "",
+      "examples": [
+        "Doe"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "address": {
+      "$id": "#/properties/address",
+      "type": "object",
+      "title": "The Address Schema",
+      "required": [
+        "streetName",
+        "streetNumber",
+        "city",
+        "postCode",
+        "state",
+        "country"
+      ],
+      "properties": {
+        "streetName": {
+          "$id": "#/properties/address/properties/streetName",
+          "type": "string",
+          "title": "The Streetname Schema",
+          "default": "",
+          "examples": [
+            "Astra House"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "streetNumber": {
+          "$id": "#/properties/address/properties/streetNumber",
+          "type": "integer",
+          "title": "The Streetnumber Schema",
+          "default": 0,
+          "examples": [
+            201
+          ]
+        },
+        "city": {
+          "$id": "#/properties/address/properties/city",
+          "type": "string",
+          "title": "The City Schema",
+          "default": "",
+          "examples": [
+            "New Cross"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "postCode": {
+          "$id": "#/properties/address/properties/postCode",
+          "type": "string",
+          "title": "The Postcode Schema",
+          "default": "",
+          "examples": [
+            "SE14 24"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "state": {
+          "$id": "#/properties/address/properties/state",
+          "type": "string",
+          "title": "The State Schema",
+          "default": "",
+          "examples": [
+            "London"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country": {
+          "$id": "#/properties/address/properties/country",
+          "type": "string",
+          "title": "The Country Schema",
+          "default": "",
+          "examples": [
+            "United Kingdom"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "email": {
+      "$id": "#/properties/email",
+      "type": "string",
+      "title": "The Email Schema",
+      "default": "",
+      "examples": [
+        "my-email@gmail.com"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "phoneNumber": {
+      "$id": "#/properties/phoneNumber",
+      "type": "string",
+      "title": "The Phonenumber Schema",
+      "default": "",
+      "examples": [
+        "00447307568957"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "mobileNumber": {
+      "$id": "#/properties/mobileNumber",
+      "type": "string",
+      "title": "The Mobilenumber Schema",
+      "default": "",
+      "examples": [
+        "00447307568957"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "language": {
+      "$id": "#/properties/language",
+      "type": "string",
+      "title": "The Language Schema",
+      "default": "",
+      "examples": [
+        "en"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "walletOrganizations": {
+      "$id": "#/properties/walletOrganizations",
+      "type": "array",
+      "title": "The Walletorganizations Schema",
+      "items": {
+        "$id": "#/properties/walletOrganizations/items",
+        "type": "string",
+        "title": "The Items Schema",
+        "default": "",
+        "examples": [
+          "3288603f-adf8-453e-b4e9-cbad4805f86c"
+        ],
+        "pattern": "^(.*)$"
+      }
+    }
+  }
+}
+}

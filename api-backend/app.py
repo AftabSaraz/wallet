@@ -1,10 +1,13 @@
-from flask import Flask, jsonify, request
+from flask_jsonschema_validator import JSONSchemaValidator
+from flask import Flask, jsonify, request,Response
 from flask_restful import Api, Resource
 from pymongo import MongoClient
 import bcrypt
+import jsonschema
 
 app = Flask(__name__)
 api = Api(app)
+JSONSchemaValidator(app=app, root="schemas")
 
 app.config["users_schema"] = ""
 
@@ -23,6 +26,13 @@ class Index(Resource):
         return "Landed on Index"
 
 class CreateWalletUser(Resource):
+
+    @app.errorhandler(jsonschema.ValidationError)
+    def onValidationError(e):
+        return Response("There was a validation error: " + str(e), 400)
+
+    @app.route('/register1', methods=['POST'])
+    @app.validate('users', 'user_schema')
     def post(self):
         # Get posted data from request
         data = request.get_json()
@@ -70,6 +80,7 @@ class CreateWalletUser(Resource):
 
 api.add_resource(Index, '/')
 api.add_resource(CreateWalletUser, '/v1/users')
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=8080)

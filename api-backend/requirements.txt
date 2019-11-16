@@ -9,4 +9,4 @@ Flask-PyMongo==2.3.0
 flask_restful
 pymongo
 bcrypt
-sshtunnel
+flask-jsonschema-validator
