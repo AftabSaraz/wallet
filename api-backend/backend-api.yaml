@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: api-backend
-          image: gcr.io/yotube-data-api-test/apis-backend:v2
+          image: gcr.io/yotube-data-api-test/apis-backend:v3
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
