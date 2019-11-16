@@ -6,10 +6,11 @@ import bcrypt
 app = Flask(__name__)
 api = Api(app)
 
+app.config["users_schema"] = ""
+
 client = MongoClient("mongodb://35.196.137.199:27017")
 db = client.walledDB
 users = db["Users"]
-
 
 def userExist(firstName):
     if users.find({"firstName": firstName}).count() == 0:
