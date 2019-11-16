@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: api-backend
+  labels:
+    name: api-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: api-backend
+  template:
+    metadata:
+      name: api-backend
+      labels:
+        name: api-backend
+    spec:
+      containers:
+        - name: api-backend
+          image: gcr.io/yotube-data-api-test/apis-backend:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 512Mi
+          env:
+            - name: DEBUG_MODE
+              value: "1"
+---
