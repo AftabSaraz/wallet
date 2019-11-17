@@ -27,9 +27,9 @@ def get():
     return "Landed on Index"
 
 
-@app.route('/create_user', methods=['POST'])
+@app.route('/v1/create_user', methods=['POST'])
 @app.validate('user', 'user_schema')
-def post():
+def create_user():
     # Get posted data from request
     data = request.get_json()
     print(data)
@@ -85,9 +85,69 @@ def fetchAllUsers():
     return users.find()
 
 
+@app.route('/v1/update_user', methods=['POST'])
+@app.validate('user', 'user_schema')
+def update_user():
+
+    user_id = request.args.get('user_id')
+
+    print(user_id)
+
+    objId = ObjectId(user_id)
+
+    # Get posted data from request
+    data = request.get_json()
+    print(data)
+    # todo - validations here.
+    # todo - check access key and secret here
+    # get data from payload
+    lastName = data["lastName"]
+    firstName = data["firstName"]
+    address = data["address"]
+    email = data["email"]
+    phoneNumber = data["phoneNumber"]
+    language = data["language"]
+    walletOrganizations = data["walletOrganizations"]
+
+    # # check if user exists
+    # if userExist(firstName):
+    #     retJson = {
+    #         "status": 301,
+    #         "msg": "User Already Exists"
+    #     }
+    #     return jsonify(retJson)
+
+    # Insert record
+    user_id = users.update(
+        {
+            "_id": objId
+        },
+        {
+            "$set":
+                {
+                    "lastName": lastName,
+                    "firstName": firstName,
+                    "address": address,
+                    "email": email,
+                    "phoneNumber": phoneNumber,
+                    "language": language,
+                    "walletOrganizations": walletOrganizations
+                }
+        })
+
+    # Return successful result
+    data.update({"id": str(user_id)})
+    retJosn = {
+        "status": "success",
+        "data": {
+            "walletAccountUser": data
+        }
+    }
+    return jsonify(retJosn)
+
+
 @app.route('/v1/users', methods=['GET'])
 def retrieveUser():
-
     user_id = request.args.get('user_id')
 
     if user_id is None:
